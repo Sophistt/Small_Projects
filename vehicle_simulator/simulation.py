@@ -24,7 +24,8 @@ class Vehicle(pygame.sprite.Sprite):
         super(Vehicle, self).__init__()
 
         # Pygame parameters
-        self.image = self.ori_image = pygame.image.load(image_path)  # Use origin image for rotation
+        self.image = self.ori_image = pygame.image.load(
+            image_path)  # Use origin image for rotation
         self.rect = self.image.get_rect()
 
         # Vehicle parameters
@@ -44,7 +45,8 @@ class Vehicle(pygame.sprite.Sprite):
     def update(self, dt):
         # Logic update
         self.velocity += (self.acceleration * dt, 0)
-        self.velocity.x = max(-self.max_velocity, min(self.velocity.x, self.max_velocity))
+        self.velocity.x = max(-self.max_velocity,
+                              min(self.velocity.x, self.max_velocity))
 
         if self.steering:
             turning_radius = self.length / tan(radians(self.steering))
@@ -75,7 +77,8 @@ class Game:
     # Draw road line
     def drawRoadLine(self):
         for i in range(20):
-            pygame.gfxdraw.line(self.screen, 100 * i, 480, 100 * i + 50, 480, (255, 255, 255))
+            pygame.gfxdraw.line(self.screen, 100 * i, 480,
+                                100 * i + 50, 480, (255, 255, 255))
         pygame.gfxdraw.line(self.screen, 0, 368, 1920, 368, (255, 255, 255))
         pygame.gfxdraw.line(self.screen, 0, 592, 1920, 592, (255, 255, 255))
 
@@ -112,7 +115,7 @@ class Game:
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
                         self.exit = True
-            
+
             # Set velocity of obstacle
             obstacle.velocity.x = 3
             # Path Plan and purepursuit
@@ -121,9 +124,11 @@ class Game:
             curPoint = vehicle.position
             aPoint = PathPlan.searchGoalPoint(curPoint, obstacle)
             path = PathPlan.hermite(curPoint, aPoint, 0)
-            
+
             # Compute angle to avoid obstacles
-            vehicle.angle = -purepursuit.trajectoryTracking(path, vehicle.position, vehicle.angle)
+            vehicle.angle = - \
+                purepursuit.trajectoryTracking(
+                    path, vehicle.position, vehicle.angle)
             vehicle.acceleration = 3
 
             # Drawing
@@ -132,11 +137,13 @@ class Game:
 
             for entity in all_sprites:
                 entity.update(dt)  # Update of logic and image
-                self.screen.blit(entity.image, entity.position * ppu - (entity.rect.width / 2, entity.rect.height / 2))
+                self.screen.blit(entity.image, entity.position * ppu -
+                                 (entity.rect.width / 2, entity.rect.height / 2))
 
             # Draw plan path
             for i in range(len(path)):
-                self.screen.set_at([int(ppu * path[i].x), int(ppu * path[i].y)], (255, 255, 255))
+                self.screen.set_at(
+                    [int(ppu * path[i].x), int(ppu * path[i].y)], (255, 255, 255))
 
             pygame.display.flip()
         pygame.quit()

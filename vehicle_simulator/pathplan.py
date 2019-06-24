@@ -7,7 +7,7 @@ class Point:
     def __init__(self, p):
         self.x = p[0]
         self.y = p[1]
-    
+
     # Change its print function to print x and y
     def __repr__(self):
         return '({}, {})'.format(self.x, self.y)
@@ -18,13 +18,13 @@ class PathPlan:
     def __init__(self,
                  direction=0):
         self.goalDirection = direction
-    
-    # Search the suitable goal point to avoid obstacle, but it just 
+
+    # Search the suitable goal point to avoid obstacle, but it just
     # a simple function so that it can and should be optimized.
     @staticmethod
     def searchGoalPoint(currentPoint, obstacle):
         curPoint = Point(currentPoint)
-        
+
         goalPoint_x = curPoint.x + 15
         goalPoint_y = curPoint.y
 
@@ -34,7 +34,7 @@ class PathPlan:
                 goalPoint_y = obstacle.position.y - 3.5
 
         return (goalPoint_x, goalPoint_y)
-    
+
     # Essential method
     # Function: select suitable control points between current point
     # and goal point, and then calculate and return the bezier curve.
@@ -69,8 +69,10 @@ class PathPlan:
                 while j < rank:
                     k = 0
                     while k <= (rank - j):
-                        temp_points[k].x = (1 - u) * temp_points[k].x + u * temp_points[k + 1].x
-                        temp_points[k].y = (1 - u) * temp_points[k].y + u * temp_points[k + 1].y
+                        temp_points[k].x = (
+                            1 - u) * temp_points[k].x + u * temp_points[k + 1].x
+                        temp_points[k].y = (
+                            1 - u) * temp_points[k].y + u * temp_points[k + 1].y
                         k += 1
                     j += 1
                 planpath.append(deepcopy(temp_points[0]))
