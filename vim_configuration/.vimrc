@@ -36,10 +36,10 @@ set whichwrap+=<,>,h,l
 set autoread
 set cursorline      "Highlight current row"
 "set cursorcolumn        "Highlight current column""
-
+set showcmd
 
 """"""""""""""""""""""""
-"Python setting"
+"Hotkeys remapping"
 """"""""""""""""""""""""
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -47,19 +47,92 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 """"""""""""""""""""""""
-"Python setting"
+"File setting"
 """"""""""""""""""""""""
-au BufNewFile,BufRead *.py
-\set tabstop=4
-\set softtabstop=4
-\set shiftwidth=4
-\set textwidth=100
-\set expandtab
 
+"Python setting
+au BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=100 expandtab autoindent
+
+"Java setting
+au BufNewFile,BufRead *.java set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=100 expandtab
+
+"C setting
+au BufNewFile,BufRead *.cpp,*.c,*.h set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=100 expandtab
+
+"Ros launch setting
+au BufNewFile,BufRead *.launch set syntax=xml tabstop=4 softtabstop=4 shiftwidth=4 expandtab
+
+
+""""""""""""""""""""""""
+"Auto insert title"
+""""""""""""""""""""""""
+autocmd BufNewFile *.[ch],*.hpp,*.cpp exec ":call SetTitle()" 
+
+" Title function 
+func SetTitle()
+	call SetComment()
+	if expand("%:e") == 'hpp' 
+		call append(line(".")+10, "#ifndef _".toupper(expand("%:t:r"))."_H") 
+		call append(line(".")+11, "#define _".toupper(expand("%:t:r"))."_H") 
+		call append(line(".")+12, "#ifdef __cplusplus") 
+		call append(line(".")+13, "extern \"C\"") 
+		call append(line(".")+14, "{") 
+		call append(line(".")+15, "#endif") 
+		call append(line(".")+16, "") 
+		call append(line(".")+17, "#ifdef __cplusplus") 
+		call append(line(".")+18, "}") 
+		call append(line(".")+19, "#endif") 
+		call append(line(".")+20, "#endif //".toupper(expand("%:t:r"))."_H") 
+ 
+	elseif expand("%:e") == 'h' 
+	  	call append(line(".")+10, "#pragma once") 
+	elseif expand("%:e") == 'c' 
+	  	call append(line(".")+10,"#include \"".expand("%:t:r").".h\"") 
+	elseif expand("%:e") == 'cpp' 
+	  	call append(line(".")+10, "#include \"".expand("%:t:r").".h\"") 
+	endif
+endfunc
+
+" Comment function 
+func SetComment()
+	call setline(1,"/*================================================================") 
+	call append(line("."),   "*   Copyright (C) ".strftime("%Y")." Sangfor Ltd. All rights reserved.")
+	call append(line(".")+1, "*   ") 
+	call append(line(".")+2, "*   @file:" .expand("%:t")) 
+	call append(line(".")+3, "*   @author: Sophistt")
+	call append(line(".")+4, "*   @date:" .strftime("%Y-%m-%d %H:%M")) 
+	call append(line(".")+5, "*   @description: ") 
+	call append(line(".")+6, "*")
+	call append(line(".")+7, "================================================================*/") 
+	call append(line(".")+8, "")
+	call append(line(".")+9, "")
+endfunc
+
+" Insert title for *.sh file
+autocmd BufNewFile *.sh call AddFileInformation_sh()
+function AddFileInformation_sh()
+      let infor = "#!/bin/bash\n"
+      \."\n"
+      \."# ***************************************************************************\n"
+      \."# * @Copyright (c)  all right reserved \n"
+      \."# * \n"
+      \."# * @file:".expand("%")." \n"
+      \."# * @author: Sophistt \n"
+      \."# * @date:".strftime("%Y-%m-%d %H:%M")." \n"
+      \."# * @description: Shell script \n"
+      \."#* \n"
+      \."#**************************************************************************/ \n"
+      \."\n"
+      \."\n"
+      \."\n"
+      \."\n"
+      \."exit 0"
+      silent  put! =infor
+endfunction
 
 """""""""""""""""""""
 "Vundle"
-"""""""""""""""""""""""
+"""""""""""""""""""""
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -110,11 +183,13 @@ let g:ycm_complete_in_strings = 1
 "Set closing window automatically after leaving insert mode"
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
+"YouCompleteMe Hotkeys remapping
+nnoremap gl :YcmCompleter GoToDeclaration<CR>
+nnoremap gk :YcmCompleter GoToDefinition<CR>
 
 
-""""""""""""""""""""""""""
+"""""""""""""""""""""""""
 "Set keyboard shortcuts"
 """""""""""""""""""""
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
-
 

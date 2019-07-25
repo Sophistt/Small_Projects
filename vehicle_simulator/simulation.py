@@ -141,9 +141,9 @@ class Game:
                                  (entity.rect.width / 2, entity.rect.height / 2))
 
             # Draw plan path
-            for i in range(len(path)):
-                self.screen.set_at(
-                    [int(ppu * path[i].x), int(ppu * path[i].y)], (255, 255, 255))
+            # for i in range(len(path)):
+            #    self.screen.set_at(
+            #        [int(ppu * path[i].x), int(ppu * path[i].y)], (255, 255, 255))
 
             pygame.display.flip()
         pygame.quit()
