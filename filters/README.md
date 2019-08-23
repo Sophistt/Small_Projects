@@ -1,6 +1,12 @@
 # Various simple filters
 
 ## Kalman filter
+Tutorial: [click here](https://sophistt.github.io/study/2019/07/24/kalman-filter.html)
+
+Principle:
+
+<img src="https://latex.codecogs.com/gif.latex?\begin{align*}&space;\hat{x}^-_t&space;=&space;A\hat{x_{t-1}}&space;&plus;&space;Bu_t&space;\\&space;\hat{P}^-_t&space;=&space;A\hat{P_{t-1}}A^T&space;&plus;&space;Q&space;\\&space;K_t&space;=&space;\frac{\hat{P}^-_tH^T}{H^T\hat{P}^-_tH^T&space;&plus;&space;R}&space;\\&space;\hat{x}_t&space;=&space;\hat{x}^-_t&space;&plus;&space;K_t(z_t&space;-&space;H\hat{x}^-_t)&space;\\&space;\hat{P}_t&space;=&space;(I&space;-&space;K_tH)\hat{P}^-_t&space;\end{align*}" title="\begin{align*} \hat{x}^-_t = A\hat{x_{t-1}} + Bu_t \\ \hat{P}^-_t = A\hat{P_{t-1}}A^T + Q \\ K_t = \frac{\hat{P}^-_tH^T}{H^T\hat{P}^-_tH^T + R} \\ \hat{x}_t = \hat{x}^-_t + K_t(z_t - H\hat{x}^-_t) \\ \hat{P}_t = (I - K_tH)\hat{P}^-_t \end{align*}" />
+
 ## Mean filter
 ## Exponential filter
 
