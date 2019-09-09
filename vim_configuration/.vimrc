@@ -10,11 +10,6 @@ set guioptions-=L
 set guioptions-=b
 set showtabline=0 "Hide top bar"
 set guifont=Monaco:h13  "Set font"  
-syntax on   "syntax highlight"
-set background=dark     "ÉèÖÃ±³¾°É«"
-colorscheme space-vim-dark
-"change comment color"
-"highlight Comment ctermfg=green guifg=green
 set nowrap  "Don't hide lines automatically
 set fileformat=unix "Save file in unix format
 set cindent     "ÉèÖÃCÑùÊ½µÄËõ½ø¸ñÊ½"
@@ -35,8 +30,19 @@ set noexpandtab     "Prohibit extend table"
 set whichwrap+=<,>,h,l
 set autoread
 set cursorline      "Highlight current row"
-"set cursorcolumn        "Highlight current column""
+set cursorcolumn    "Highlight current column"
 set showcmd
+
+" Set Syntax highlight
+syntax on   "syntax highlight"
+filetype plugin indent on
+let python_highlight_all = 1
+" Set Syntax colorscheme
+set background=dark     
+colorscheme space-vim-theme
+hi Comment cterm=italic
+"change comment color"
+"highlight Comment ctermfg=green guifg=green
 
 """"""""""""""""""""""""
 "Hotkeys remapping"
@@ -130,7 +136,44 @@ function AddFileInformation_sh()
       silent  put! =infor
 endfunction
 
-"""""""""""""""""""""
+" Insert title for *.py file
+autocmd BufNewFile *.py call AddFileInformation_py()
+function AddFileInformation_py()
+      let infor = "#!/home/wcy/software/miniconda3/envs/py3.6/bin/python3\n"
+      \."# -*- coding: utf-8 -*-\n"
+      \."\n"
+      \."\"\"\"\n"
+      \."* @Copyright (c)  all right reserved\n"
+      \."* \n"
+      \."* @file:".expand("%")."\n"
+      \."* @author: Sophistt\n"
+      \."* @date:".strftime("%Y-%m-%d %H:%M")."\n"
+      \."* @description: Python file\n"
+      \."\"\"\"\n"
+      \."\n"
+      \."\n"
+      silent  put! =infor
+endfunction
+
+" Insert title for post
+autocmd BufNewFile *-*-*-*.md call AddFileInformation_md()
+function AddFileInformation_md()
+	let infor = "---\n"
+	\."layout: post\n"
+	\."title: \"\"\n"
+	\."date: ".strftime("%Y-%m-%d")." \n"
+	\."mathjax: true\n"
+	\."catalog: true\n"
+	\."categories: []\n"
+	\."tags: []\n"
+	\."icon: \n"
+	\."---\n"
+	\."\n"
+	silent  put! =infor
+endfunction
+
+
+""""""""""""""""""""
 "Vundle"
 """""""""""""""""""""
 filetype off
@@ -146,6 +189,7 @@ Plugin 'tell-k/vim-autopep8'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'godlygeek/tabular'
 Plugin 'Raimondi/delimitMate'
+Plugin 'mileszs/ack.vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -188,8 +232,16 @@ nnoremap gl :YcmCompleter GoToDeclaration<CR>
 nnoremap gk :YcmCompleter GoToDefinition<CR>
 
 
-"""""""""""""""""""""""""
+"""""""""""""""""""""
 "Set keyboard shortcuts"
 """""""""""""""""""""
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+
+
+"""""""""""""""""""""
+"Ack.vim"
+"""""""""""""""""""""
+if executable('ag')
+	let g:ackprg = 'ag --vimgrep'
+endif
 
