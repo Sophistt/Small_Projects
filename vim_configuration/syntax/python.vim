@@ -1,13 +1,12 @@
 " Vim syntax file
 " Language:	Python
-" Maintainer:	Jose Elera Campana (https://github.com/jelera)
-" Last Change:	02/29/12 02:37:51
+" Maintainer:	Kent Sophistt (https://github.com/sophistt)
+" Last Change:	09/10/19 02:37:51
 " Filenames:	*.py
-" Version:	    3.0.7
+" Version:	3.0.7
 "
 " Based on python.vim (from Vim 6.1 distribution)
-" by Neil Schemenauer <nas at python dot ca>
-" and	Dmitry Vasiliev <dima at hlabs dot org>  https://github.com/hdima/vim-scripts/blob/master/syntax/python/python3.0.vim
+" by Jose Elear Campana (https://github.com/jelera)
 "
 " Thanks:
 "
