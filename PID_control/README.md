@@ -1,40 +1,32 @@
-# PID Control 
+# PID Controller
 
-Here are a PID Control Class of Python, a control model and a test python file of PID experiment.
+[![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
+[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+![Build Passing](https://img.shields.io/appveyor/ci/gruntjs/grunt)
 
-## Principle
-A **proportional-integral-derivative controller** (PID controller) is a control loop mechanism employing feedback taht is widely used in industrial control systems and a variety of other applications requiring continously modulated control.
+> PID Controller and simulator with basic first-order model
 
+Here are a Class of PID Controller, a simple first-order model for simulation and a python file of simulator for PID experiment.
 
+## Table of Contents
 
-![Imgur](https://i.imgur.com/ci6iFtK.png)
+- [Background](#background)
+- [Requirement](#requirement)
+- [Usage](#usage)
 
-<p align="center">Image of PID controller</p>
+## Background
 
-From the above image, we can get the equation of PID controller:
+This project started with the issue about controlling the steering wheel through torque to achieve target steering angle. A python Class of simple incremental PID controller was created for convenient call. To test the effect of PID controller, a simple first-order plant was established. Through the simulator, the tracking process was recorded and data were shown by matplotlib.
 
-<div align=center><img src="https://i.imgur.com/LDFUNlL.png"/></div>
+If interested, check out the link of mathmatical principle about PID controller: [Pinciple of PID controller](https://sophistt.github.io/study/2019/12/04/pid-controller.html) 
 
-In this equation, *e(t)* means the error between target output and current output; *KP* is the coefficient of the proportional process; *TI* is the coefficient of the integral process; *TD* is the coefficient of the derivative process.
+## Requirement
 
-However, in industrial control systems, the input and output values are discrete and we obtain them by sampling periodically by sensors. Therefore, the equation of PID controller should be transfromed into the discrete equation, in which *T* is the sampling period.
+- python
+  - matplotlib
 
-![Imgur](https://i.imgur.com/izO8g6R.png)
+## Usage
 
-Through the above equation, the control signal *u* could be calculated by sampling the output *y* of the discrete system each step. Therefore, such equation is named **Positional PID Controller**, since it calculates the input signals each step.
-
-Unfortunately, **Positional PID controller** needs to save and compute all the errors between target output and actual output from the beginning till now, which cost numerous computing resources. Hence, **Incremental PID Controller** is introduced to resolve the problem.
-
-### Incremental PID Controller
-
-A new equation of positional PID controller in the *ek-1* moment is introduced,
-![Imgur](https://i.imgur.com/FLoSUkB.png)
-
-Use the equation (1) minus eqution (2), equation (3) could be obtained.
-![Imgur](https://i.imgur.com/Rjk3kJs.png)
-
-Through equation (3), we can calculate the increment of control signals only by saving past errors *ek-1*, *ek-2*.
-
-## Optimize parameters of PID Controller
-
-To be continued ...
+```
+python simulator.py
+```
