@@ -18,6 +18,11 @@ Here are a Class of PID Controller, a simple first-order model for simulation an
 
 This project started with the issue about controlling the steering wheel through torque to achieve target steering angle. A python Class of simple incremental PID controller was created for convenient call. To test the effect of PID controller, a simple first-order plant was established. Through the simulator, the tracking process was recorded and data were shown by matplotlib.
 
+<div align="center"> 
+<img height="50%" width="50%" src="https://i.imgur.com/GrsFxXT.png" title="example"/><br>
+Image of analysis of PID Controller <br>
+</div><br>  
+
 If interested, check out the link of mathmatical principle about PID controller: [Pinciple of PID controller](https://sophistt.github.io/study/2019/12/04/pid-controller.html) 
 
 ## Requirement
