@@ -6,9 +6,9 @@
 ![Build Passing](https://img.shields.io/appveyor/ci/gruntjs/grunt)
 
 
-> LQR Controller and simulator 
+> Basic LQR controller and and a extension controller for steering controller of self-driving vehicles.
 
-TODO: Description
+Here are a Class of Basic LQR Controller, a simple extension for Steering LQR Controller, a cubic spline generator for experiment and a main file for example.
 
 ## Table of Contents
 
@@ -18,6 +18,15 @@ TODO: Description
 
 ## Background
 
+
+
 ## Requirement
 
+- Python3.6
+  - matplotlib
+  - numpy
+
 ## Usage
+```
+python main.py
+```
