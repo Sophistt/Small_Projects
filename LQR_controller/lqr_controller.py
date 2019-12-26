@@ -30,8 +30,8 @@ class LQR:
 
         for i in range(self.max_iter):
             X_next = self.Q + self.A.T @ X @ self.A - self.A.T @ X @ self.B @ \
-                     np.inv(self.R + self.B.T  @ X @ self.B) @ self.B.T @ X @ self.A 
-            if (abs(X_next - x)).max() < self.eps:
+                     np.linalg.inv(self.R + self.B.T  @ X @ self.B) @ self.B.T @ X @ self.A 
+            if (abs(X_next - X)).max() < self.eps:
                 break
             X = X_next
 
@@ -40,9 +40,9 @@ class LQR:
     
     def get_control_signals(self, x):
 
-        X = solve_DARE()
+        X = self.solve_DARE()
 
-        K = np.inv(self.B.T @ X @ self.B + self.R) @ (self.B.T @ X @ self.A)
+        K = np.linalg.inv(self.B.T @ X @ self.B + self.R) @ (self.B.T @ X @ self.A)
 
         ustar = -K @ x
 

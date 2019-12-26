@@ -86,20 +86,21 @@ class SteeringLQR(LQR):
         self.set_speed(state.v)
         self.update_matrix()
         
+        k = ck[ind]
         th_e = self.pi_2_pi(state.yaw - cyaw[ind])
 
         x = np.zeros((4, 1))
 
         x[0, 0] = e
-        x[1, 0] = (e - pe) / dt
-        x[2, 0] = the
-        x[3, 0] = (th_e - pth_e) / dt
+        x[1, 0] = (e - pe) / self.dt
+        x[2, 0] = th_e
+        x[3, 0] = (th_e - pth_e) / self.dt
 
         ustar, _, _ = self.get_control_signals(x)
 
         ff = math.atan2(self.L * k, 1) 
         fb = self.pi_2_pi(ustar[0, 0])
-
+        
         delta = ff + fb
 
         return delta, ind, e, th_e
