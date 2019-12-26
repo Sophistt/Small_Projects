@@ -8,4 +8,7 @@ Here are some interesting projects created for practice and personal configurati
 - [Various simple signal filters](https://github.com/Sophistt/Small_Projects/tree/master/filters)
 - [Basic vehicle simulatior with kinematics](https://github.com/Sophistt/Small_Projects/tree/master/vehicle_simulator)
 - [Vim configuration](https://github.com/Sophistt/Small_Projects/tree/master/vim_configuration)
-- [PID Control](https://github.com/Sophistt/Small_Projects/tree/master/PID_control)
+
+## Controller of system
+- [PID Controller](https://github.com/Sophistt/Small_Projects/tree/master/PID_control)
+- [LQR Controller](https://github.com/Sophistt/Small_Projects/tree/master/LQR_controller)
