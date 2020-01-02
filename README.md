@@ -10,5 +10,5 @@ Here are some interesting projects created for practice and personal configurati
 - [Vim configuration](https://github.com/Sophistt/Small_Projects/tree/master/vim_configuration)
 
 ## Controller of system
-- [PID Controller](https://github.com/Sophistt/Small_Projects/tree/master/PID_control)
+- [PID Controller](https://github.com/Sophistt/Small_Projects/tree/master/PID_controller)
 - [LQR Controller](https://github.com/Sophistt/Small_Projects/tree/master/LQR_controller)
