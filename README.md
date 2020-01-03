@@ -12,3 +12,6 @@ Here are some interesting projects created for practice and personal configurati
 ## Controller of system
 - [PID Controller](https://github.com/Sophistt/Small_Projects/tree/master/PID_controller)
 - [LQR Controller](https://github.com/Sophistt/Small_Projects/tree/master/LQR_controller)
+
+## Deep Learning
+- [City Prediction](https://github.com/Sophistt/Small_Projects/tree/master/city_prediction)
