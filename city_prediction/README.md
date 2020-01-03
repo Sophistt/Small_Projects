@@ -1,12 +1,12 @@
 
-# Template of basic NN training
+# City Prediction
 
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 ![Build Passing](https://img.shields.io/appveyor/ci/gruntjs/grunt)
 
-> A template for basic neural network training to begin a small project quickly.
-Here are a class of Neural Network used for defining the model, a `params.py` file consists of parameters for training and a `main.py` file to begin to train evaluate the model. 
+> A project utilze data of city to test pytorch template. 
+Here are a class of Neural Network used for defining the model, a `params.py` file consists of parameters for training, a `main.py` file to begin to train evaluate the model, a `data.py` to create data pipeline from `train.txt` and `eval.txt` and a `tool.py` for visualization of the training process.
 
 ## Table of Contents
 
@@ -16,7 +16,7 @@ Here are a class of Neural Network used for defining the model, a `params.py` fi
 - [Usage](#usage)
 
 ## Background
-Codes for creating data pipeline, training the model and results evaluation are similar. To save time and stop monotonous work, a template was created and we can quickly begin our work by only modifying a bit of codes through it.
+Codes for creating data pipeline, training the model and results evaluation are similar. To save time and stop monotonous work, a template was created and we can quickly begin our work by only modifying a bit of codes through it. In order to test codes, data of cities are downloaded and recorded. Modify `data.py` to create the datapipe line and run `main.py` to begin the training process. 
 
 ## Prerequisites
 
@@ -41,3 +41,5 @@ Codes for creating data pipeline, training the model and results evaluation are 
 ```
 python main.py
 ```
+
+<a href="https://imgur.com/9NglSqn"><img src="https://i.imgur.com/9NglSqn.png" title="source: imgur.com" /></a>
